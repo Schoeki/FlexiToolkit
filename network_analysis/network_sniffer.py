@@ -1,33 +1,46 @@
 import pyshark
 
-def analyze_pcap(file_path):
-    print(f"\n📂 Analyzing PCAP file: {file_path}")
-    try:
-        capture = pyshark.FileCapture(file_path, display_filter="ip")
-        for packet in capture.sniff_continuously(packet_count=10):
-            print(f"[+] {packet.highest_layer} | {packet.ip.src} -> {packet.ip.dst}")
-        capture.close()
-    except Exception as e:
-        print(f"[!] Error: {e}")
+def live_capture():
+    print("=== FlexiToolkit | Network Packet Sniffer ===")
+    interface = input("Enter network interface (default: Wi-Fi): ") or "Wi-Fi"
+    capture = pyshark.LiveCapture(interface=interface)
 
-def live_capture(interface):
-    print(f"\n🛜 Starting live capture on: {interface}")
+    print("[*] Capturing packets... (Press Ctrl+C to stop)")
     try:
-        capture = pyshark.LiveCapture(interface=interface)
-        for packet in capture.sniff_continuously(packet_count=10):
-            print(f"[+] {packet.highest_layer} | {packet.ip.src} -> {packet.ip.dst}")
+        for i, packet in enumerate(capture.sniff_continuously(packet_count=10)):
+            print(f"\nPacket #{i + 1}: {packet.highest_layer}")
+            if 'IP' in packet:
+                print(f"From {packet.ip.src} → To {packet.ip.dst}")
+    except KeyboardInterrupt:
+        print("\n[✓] Capture stopped.")
+
+def read_pcap_file():
+    print("=== FlexiToolkit | PCAP File Analysis ===")
+    file_path = input("Enter path to .pcap file: ")
+    try:
+        cap = pyshark.FileCapture(file_path)
+        print("[*] Displaying top 10 packets:")
+        for i, packet in enumerate(cap):
+            print(f"\nPacket #{i + 1}: {packet.highest_layer}")
+            if 'IP' in packet:
+                print(f"From {packet.ip.src} → To {packet.ip.dst}")
+            if i == 9:
+                break
     except Exception as e:
-        print(f"[!] Error: {e}")
+        print(f"[!] Error reading file: {e}")
+
+def main():
+    print("=== FlexiToolkit | Network Analysis ===")
+    print("1. Live Packet Capture")
+    print("2. Analyze .pcap File")
+    choice = input("Choose option (1 or 2): ")
+
+    if choice == "1":
+        live_capture()
+    elif choice == "2":
+        read_pcap_file()
+    else:
+        print("[!] Invalid choice.")
 
 if __name__ == "__main__":
-    print("=== FlexiToolkit | Network Packet Sniffer ===")
-    mode = input("Choose mode - (1) Live Capture, (2) Analyze PCAP file: ").strip()
-    
-    if mode == "1":
-        interface = input("Enter network interface (default: Wi-Fi): ").strip() or "Wi-Fi"
-        live_capture(interface)
-    elif mode == "2":
-        file_path = input("Enter path to .pcap file: ").strip()
-        analyze_pcap(file_path)
-    else:
-        print("[!] Invalid selection.")
+    main()
