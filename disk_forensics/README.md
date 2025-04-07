@@ -1,67 +1,65 @@
-# FlexiToolkit | Disk Forensics Module
+  # FlexiToolkit | Disk Forensics Module
 
-This module helps forensic analysts create bit-for-bit disk image copies and generate a **SHA256 hash** to ensure forensic integrity.
+This module provides functionality to create disk image copies and verify their integrity using SHA256 hashing. It is helpful in digital forensics when making bit-by-bit copies of drives or files while preserving original evidence.
 
----
+## Features
 
-## ✅ Features
-
-- Read-only disk image creation using `shutil.copy2()`
-- SHA256 hash generation for verifying integrity
-- Lightweight and suitable for field use
-- Ensures evidence remains unmodified (for court admissibility)
+✅ Create disk image copies using `shutil.copy2`  
+✅ Generate and verify SHA256 hash of disk images  
+✅ Error handling for missing or protected files  
+✅ User-friendly console prompts
 
 ---
 
-## 🧪 How to Use
+## 🛠 Tool Used
 
-1. Place the file or disk image to be copied in an accessible location.
-2. Run the script:
+**`disk_imager.py`**  
+- Core script for disk image creation  
+- Calculates SHA256 hash  
+- Includes interactive prompts for input/output paths  
 
+The older `disk_tool.py` has been deprecated and removed.
+
+---
+
+## 🔧 How to Use
+
+1. Navigate to the `disk_forensics` directory:
 ```bash
-python disk_tool.py
+cd disk_forensics
 ```
 
-3. You’ll be prompted for:
-- The **source file path** (e.g., `C:/Users/sonam/Desktop/source.txt`)
-- The **destination disk image path** (e.g., `C:/Users/sonam/Desktop/image.dd`)
+2. Run the tool:
+```bash
+python disk_imager.py
+```
+
+3. Provide:
+- **Source path**: File to image (e.g., `E:\evidence.dd`)
+- **Destination path**: Location to save the copy (e.g., `C:\images\copy.dd`)
 
 ---
 
-## 💻 Example Run
+## 🧪 Sample Output
 
-```
+```plaintext
 [*] Creating disk image...
-[✔] Disk image created successfully!
+[✓] Disk image created successfully!
 [*] Calculating SHA256 hash of image...
-[✔] SHA256: 6f3e9ba6f7354d7d41ab34c93e0d943e26e2dbeec5b35d3e3827c6d1b7af0629
+[✓] SHA256: 2a3f324b17ee... (hash value)
 ```
 
 ---
 
-## 📝 Sample Code Snippet (inside `disk_tool.py`)
+## Requirements
 
-```python
-def calculate_sha256(file_path):
-    sha256 = hashlib.sha256()
-    with open(file_path, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            sha256.update(chunk)
-    return sha256.hexdigest()
-```
+- Python 3.x
+- No external libraries required (uses built-in `shutil` and `hashlib`)
 
 ---
 
-## 📌 Notes
+## 📁 Files
 
-- Use for forensic imaging of files or logical drives.
-- Always verify hashes to maintain **chain of custody**.
-- Works best on small to medium-size files for quick field use.
+- `disk_imager.py` — main tool for disk imaging  
+- `README.md` — this file
 
----
-
-## 👤 Author
-
-Sonam Choeki  
-BIT302 Capstone Project – FlexiToolkit  
-Box Hill Institute  
