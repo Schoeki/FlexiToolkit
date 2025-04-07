@@ -35,28 +35,31 @@ FlexiToolkit is a modular Python-based digital forensics suite designed for stud
 
 ---
 
-## 📁 Folder Structure
+### 📁 Folder Structure
 
-FlexiToolkit/
-│
-├── disk_forensics/
-│   └── disk_imager.py
-│
-├── log_analysis/
-│   └── log_tool.py
-│
-├── memory_forensics/
-│   └── vol_tool.py
-│
-├── network_analysis/
-│   └── network_sniffer.py
-│
-├── utils/
-│   └── hash_checker.py
-│
-├── main.py
-├── LICENSE
-└── README.md
+- `disk_forensics/`
+  - `disk_imager.py`
+  - `README.md`
+
+- `log_analysis/`
+  - `log_tool.py`
+  - `README.md`
+
+- `memory_forensics/`
+  - `vol_tool.py`
+  - `README.md`
+
+- `network_analysis/`
+  - `network_sniffer.py`
+  - `README.md`
+
+- `utils/`
+  - `hash_checker.py`
+  - `README.md`
+
+- `main.py`
+- `README.md`
+- `LICENSE`
 
 
 ---
