@@ -1,5 +1,5 @@
 from disk_forensics import disk_imager  # Import disk forensics module
-from memory_forensics import volatility  # Import memory forensics module
+from memory_forensics import vol_tool  # Import memory forensics module
 from network_analysis import pyshark    # Import network analysis module
 from log_analysis import log_parser     # Import log analysis module
 from utils import hash_checker          # Import hash checker module
