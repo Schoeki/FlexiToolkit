@@ -16,7 +16,7 @@ def display_menu():
 
 def run_disk_forensics():
     print("Running Disk Forensics Tool...")
-    disk_imaging.run()  # Call the run function from disk_forensics module
+    disk_imager.run()  # Call the run function from disk_forensics module
 
 def run_log_analysis():
     print("Running Log Analysis Tool...")
@@ -24,7 +24,7 @@ def run_log_analysis():
 
 def run_memory_forensics():
     print("Running Memory Forensics Tool...")
-    volatility.run()  # Call the run function from memory_forensics module
+    vol_tool.run()  # Call the run function from memory_forensics module
 
 def run_network_analysis():
     print("Running Network Analysis Tool...")
