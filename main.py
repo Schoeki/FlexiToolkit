@@ -1,4 +1,4 @@
-from disk_forensics import disk_imaging  # Import disk forensics module
+from disk_forensics import disk_imager  # Import disk forensics module
 from memory_forensics import volatility  # Import memory forensics module
 from network_analysis import pyshark    # Import network analysis module
 from log_analysis import log_parser     # Import log analysis module
