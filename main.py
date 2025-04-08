@@ -1,3 +1,9 @@
+from disk_forensics import disk_imaging  # Import disk forensics module
+from memory_forensics import volatility  # Import memory forensics module
+from network_analysis import pyshark    # Import network analysis module
+from log_analysis import log_parser     # Import log analysis module
+from utils import hash_checker          # Import hash checker module
+
 def display_menu():
     print("Welcome to FlexiToolkit - Lightweight Forensics Tool")
     print("Select the module you want to use:")
@@ -10,44 +16,46 @@ def display_menu():
 
 def run_disk_forensics():
     print("Running Disk Forensics Tool...")
-    # Add code to run disk forensics here
+    disk_imaging.run()  # Call the run function from disk_forensics module
 
 def run_log_analysis():
     print("Running Log Analysis Tool...")
-    # Add code to run log analysis here
+    log_parser.run()  # Call the run function from log_analysis module
 
 def run_memory_forensics():
     print("Running Memory Forensics Tool...")
-    # Add code to run memory forensics here
+    volatility.run()  # Call the run function from memory_forensics module
 
 def run_network_analysis():
     print("Running Network Analysis Tool...")
-    # Add code to run network analysis here
+    pyshark.run()  # Call the run function from network_analysis module
 
 def run_hash_checker():
     print("Running Hash Checker Tool...")
-    # Add code to run hash checker here
+    hash_checker.run()  # Call the run function from utils hash_checker module
 
 def main():
     while True:
-        display_menu()
+        display_menu()  # Display the options in the CLI menu
         choice = input("Enter your choice (1-6): ")
         
         if choice == '1':
-            run_disk_forensics()
+            run_disk_forensics()  # Call the disk forensics function
         elif choice == '2':
-            run_log_analysis()
+            run_log_analysis()  # Call the log analysis function
         elif choice == '3':
-            run_memory_forensics()
+            run_memory_forensics()  # Call the memory forensics function
         elif choice == '4':
-            run_network_analysis()
+            run_network_analysis()  # Call the network analysis function
         elif choice == '5':
-            run_hash_checker()
+            run_hash_checker()  # Call the hash checker function
         elif choice == '6':
-            print("Exiting... Goodbye!")
+            print("Exiting... Goodbye!")  # Exit the program
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")  # Invalid input handling
 
 if __name__ == "__main__":
-    main()
+    main()  # Run the main program
+
+
