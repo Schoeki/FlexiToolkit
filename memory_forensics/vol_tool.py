@@ -19,4 +19,3 @@ def run():
         print("[✓] Memory analysis completed successfully!")
     except Exception as e:
         print(f"[-] Error during memory forensics: {e}")
-
