@@ -1,5 +1,6 @@
 import re
 
+# Function to analyze the log for failed logins
 def analyze_log(file_path):
     try:
         with open(file_path, 'r') as f:
@@ -18,7 +19,7 @@ def analyze_log(file_path):
     except FileNotFoundError:
         print("[-] Log file not found!")
 
-# Run the tool
-if __name__ == "__main__":
+# Define the run function
+def run():
     log_path = input("Enter full path to log file: ")
-    analyze_log(log_path)
+    analyze_log(log_path)  # Call the analyze_log function with the log file path
