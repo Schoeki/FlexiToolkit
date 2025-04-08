@@ -1,6 +1,6 @@
-import volatility3
+import volatility3 
 from volatility3.framework import contexts
-from volatility3.plugins.windows import pslist  # Example plugin, adapt as needed
+from volatility3.plugins.windows import psscan  # Change to psscan plugin for process scanning
 
 def run():
     print("[*] Running Memory Forensics Tool...")
@@ -11,11 +11,11 @@ def run():
     # Set up the volatility context (configure for your use case, OS, etc.)
     context = contexts.Context()
 
-    # Example: Initialize Volatility's PSList plugin (you can replace with other plugins)
+    # Use psscan plugin instead of pslist
     try:
         print("[*] Analyzing memory dump...")
-        plugin = pslist.PSList(context, memory_file)
-        plugin.run()  # This would analyze the memory dump for processes
+        plugin = psscan.PSScan(context, memory_file)
+        plugin.run()  # This will analyze the memory dump for processes
         print("[✓] Memory analysis completed successfully!")
     except Exception as e:
         print(f"[-] Error during memory forensics: {e}")
